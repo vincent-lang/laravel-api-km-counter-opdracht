@@ -15,6 +15,21 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (Auth::user()->roles == 'klant')
+                    <x-nav-link :href="route('ride.create')" :active="request()->routeIs('ride.create')">
+                        {{ __('Plan nieuwe rit') }}
+                    </x-nav-link>
+                    @endif
+                    @if (Auth::user()->roles == 'admin')
+                    <x-nav-link :href="route('price.edit')" :active="request()->routeIs('price.edit')">
+                        {{ __('Verander prijs') }}
+                    </x-nav-link>
+                    @endif
+                    @if (Auth::user()->roles == 'admin')
+                    <x-nav-link :href="route('progress.index')" :active="request()->routeIs('progress.index')">
+                        {{ __('Verander voortgang') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
 
@@ -42,8 +57,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Log Out') }}
                             </x-dropdown-link>
@@ -70,6 +84,21 @@
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if (Auth::user()->roles == 'klant')
+            <x-responsive-nav-link :href="route('ride.create')" :active="request()->routeIs('ride.create')">
+                {{ __('Plan nieuwe rit') }}
+            </x-responsive-nav-link>
+            @endif
+            @if (Auth::user()->roles == 'admin')
+            <x-responsive-nav-link :href="route('price.edit')" :active="request()->routeIs('price.edit')">
+                {{ __('Verander prijs') }}
+            </x-responsive-nav-link>
+            @endif
+            @if (Auth::user()->roles == 'admin')
+            <x-responsive-nav-link :href="route('progress.index')" :active="request()->routeIs('progress.index')">
+                {{ __('Verander voortgang') }}
+            </x-responsive-nav-link>
+            @endif
         </div>
 
         <!-- Responsive Settings Options -->
@@ -88,8 +117,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-responsive-nav-link>
